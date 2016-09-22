@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="flexible" content="initial-dpr=1,maximum-dpr=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <meta content="no-transform" http-equiv="Cache-Control">
+    <meta content="no-siteapp" http-equiv="Cache-Control">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>登录</title>
+    <link type="text/css" rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/flexible.js?rev=@@hash"></script>
+</head>
+
+<body>
+    <div class="logo">
+        <a href="http://www.xuechela.com/">
+            <img src="images/login-logo.png">
+        </a>
+    </div>
+    <div class="login">
+        <div class="ui-input">
+            <span>账号</span>
+            <input id="use_id" type="text" name="" placeholder="请输入“admin”" value="admin">
+        </div>
+        <div class="ui-input">
+            <span>密码</span>
+            <input id="password" type="password" name="" placeholder="请输入“123456”" value="123456">
+        </div>
+        <span class="btn-login">登录</span>
+    </div>
+</body>
+<script type="text/javascript" src="js/zepto.min.js?rev=@@hash"></script>
+<script type="text/javascript" src="js/public.js?rev=@@hash"></script>
+<script type="text/javascript">
+var submit={
+    initialize:function(){//用于存放标签对象以及调用基础函数
+        this.btn=$('.btn-login'); 
+        this.ues=$('#use_id');
+        this.password=$('#password');
+        this.startTime=3;//开始时间
+        this.initEvent();//为标签绑定事件函数 
+    }, 
+    initEvent:function(){
+       this.btn .on('click',this.btnClick.bind(this));
+
+    },
+    btnClick:function(e){
+        var ues = this.ues.val(),password = this.password.val();
+        $.ajax({
+            url: './login',
+            type: 'POST',
+            dataType: 'text',
+            data: {useId: ues,password:password},
+            success:function(a) {
+                if(a = "success"){
+                   location.href="../";
+                }else{
+                    alert('用户名为“admin”,密码为“123456”');
+                }
+            }
+        });
+    }
+};
+$(function() {
+    submit.initialize();
+});
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<li class="jxlb-list">
+    <a href="/jiaxiao/<%= el.jx_py %>">
+    <div class="jxlb-list-img">
+        <img src="<%= el.pic_addr %>">
+    </div>
+    <div class="jxlb-list-header">
+        <span class="jxlb-header-span"><%= el.jx_name %></span>
+         
+         <div class="jxlb-xx-lists">  
+            <% var stars = el.stars, allFengshu=parseFloat(stars),fengshu = allFengshu;%> 
+
+            <% for (var i = 5 ;i > 0; i--){  
+                var a = 100;                 
+                if( fengshu <= 1 ){
+                    a=parseFloat(fengshu).toFixed(2)*100;
+                }
+                if( fengshu <= 0 ){
+                    a=0;
+                }
+                fengshu--; 
+            %>
+              <span class="jxlb-xx-list">
+                <i class="icon-jll-xx-bg" style="width: <%= a %>%"></i>
+                <i class="icon-jll-xx-1 iconfont"></i>
+                </span>
+            <% } %>
+            <span class="jxlb-xx-fs"><%= allFengshu %></span>
+        </div>
+    </div>
+    <p class="confines">招生范围：<%= el.areapoint %></p>
+    <div class="money"><strong><%= el.low_price %></strong>元起（<%= el.yohui || "暑期大促中" %>）</div>
+    </a>
+</li>
